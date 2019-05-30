@@ -1,0 +1,18 @@
+
+server:
+ port: 9090
+
+spring:
+  datasource:
+    url: jdbc:sqlserver://localhost;databaseName=marketing
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    username: ozaytunctan
+    password: tunctan13
+  jpa:
+    database: sql-server
+    database-platform: org.hibernate.dialect.SQLServer2012Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
