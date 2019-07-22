@@ -4,9 +4,9 @@ pipeline {
     
     agent any
     
-     tools {
+   /*-  tools {
         maven 'apache-maven-3.6.1' 
-    }
+    }*/
     
     stages{
         
