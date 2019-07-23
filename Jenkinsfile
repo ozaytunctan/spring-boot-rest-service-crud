@@ -17,7 +17,8 @@ pipeline {
                 //sh "git clone https://github.com/ozaytunctan/spring-boot-rest-service-crud.git"
                 //sh "mvn clean -f my-app"
                 
-                sh "mvn clean"
+               // sh "mvn clean"
+                echo "PATH = ${PATH}; maven ${maven}"
                 
                 echo "Clone repo and clean it"
             }
