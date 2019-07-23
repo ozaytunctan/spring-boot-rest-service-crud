@@ -45,7 +45,7 @@ pipeline {
             stage('DEPLOY'){
             steps{
               //  sh "mvn package -f my-app"
-                //echo "Deploy running successfully"
+                echo "Deploy running successfully"
                // sh "mvn package"
             }
             
