@@ -1,4 +1,4 @@
-
+define successMessage="Successfuly "
 
 pipeline {
     
@@ -18,7 +18,7 @@ pipeline {
                 //sh "mvn clean -f my-app"
                 
                // sh "mvn clean"
-                echo "PATH = ${PATH}; maven ${maven}"
+                echo "${successMessage} PATH = ${PATH};"
                 
                 echo "Clone repo and clean it"
             }
