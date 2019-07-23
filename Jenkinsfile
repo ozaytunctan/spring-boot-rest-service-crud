@@ -30,9 +30,13 @@ pipeline {
         stage('TEST'){
 
             steps{
-                //sh "mvn test -f my-app"
+                withEnv(["PATH=${tool 'maven-3.6.1'}/bin:${tool 'jdk-1.8.0_211'}/bin:${env.PATH}"]) {
+                    
+                         //sh "mvn test -f my-app"
                 sh "mvn test"
                echo "TEST running successfully"
+                }
+           
             }
             
         }
