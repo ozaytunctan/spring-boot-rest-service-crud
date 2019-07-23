@@ -17,13 +17,13 @@ pipeline {
                // sh "rm -rf my-app"
                 //sh "git clone https://github.com/ozaytunctan/spring-boot-rest-service-crud.git"
                 //sh "mvn clean -f my-app"
-                   withEnv(["PATH=${tool 'maven-3.6.1'}/bin:${tool 'jdk-1.8.0_211'}/bin:${env.PATH}"]) {
+                   //withEnv(["PATH=${tool 'maven-3.6.1'}/bin:${tool 'jdk-1.8.0_211'}/bin:${env.PATH}"]) {
               
-                       sh "mvn clean"
+                     //  sh "mvn clean"
                
                        echo "${successMessage} PATH = ${PATH};"
                        
-                   }
+                   
             }
             
         }
@@ -32,12 +32,11 @@ pipeline {
         stage('TEST'){
 
             steps{
-                withEnv(["PATH=${tool 'maven-3.6.1'}/bin:${tool 'jdk-1.8.0_211'}/bin:${env.PATH}"]) {
-                    
-                         //sh "mvn test -f my-app"
-                sh "mvn test"
+              
+                //sh "mvn test -f my-app"
+               // sh "mvn test"
                 echo "TEST running successfully"
-                }
+                
            
             }
             
