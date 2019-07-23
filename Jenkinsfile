@@ -1,4 +1,5 @@
-define successMessage="Successfuly "
+def successMessage="Successfuly "
+def slackMessage="Slack "
 
 pipeline {
     
