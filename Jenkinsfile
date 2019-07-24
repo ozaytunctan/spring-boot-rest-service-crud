@@ -1,5 +1,6 @@
 def successMessage="Successfuly "
 def slackMessage="Slack "
+def errorMessage="Error"
 
 pipeline {
    agent any
@@ -14,23 +15,38 @@ pipeline {
                // sh "rm -rf my-app"
                 //sh "git clone https://github.com/ozaytunctan/spring-boot-rest-service-crud.git"
                 //sh "mvn clean -f my-app"
-                   //withEnv(["PATH=${tool 'maven-3.6.1'}/bin:${tool 'jdk-1.8.0_211'}/bin:${env.PATH}"]) 
-                     sh "mvn clean"
-                     echo "${successMessage} PATH = ${PATH};"          
+               try{
+                   sh "mvn clean"
+                   echo "Project build ${successMessage}"
+               }
+               catch(ex){
+                  echo "${errorMessage}"
+               }
+                           
             }            
         }
         
         stage('TEST'){
             steps{
-                sh "mvn test"
-                echo "TEST running successfully"
+               try{
+                   sh "mvn test"
+                 echo "Project test run ${successMessage}"
+               }
+               catch(ex){
+                  echo "${errorMessage}"
+               }
             }
         }
         
         stage('DEPLOY'){
             steps{
-                echo "Deploy running successfully"
-                sh "mvn package"
+               try{
+                  sh "mvn package"
+                  echo "Project deployed ${successMessage}"
+               }
+               catch(ex){
+                  echo "${errorMessage}"
+               }
        }           
      }
   }
