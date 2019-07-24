@@ -17,18 +17,25 @@ pipeline {
                // sh "rm -rf my-app"
                 //sh "git clone https://github.com/ozaytunctan/spring-boot-rest-service-crud.git"
                 //sh "mvn clean -f my-app"
+               
+               script {
+                  try{
                    sh "mvn clean"
-                   echo "Project build ${successMessage}"  
                    slackSend channel: "${slackChannel}",color: "#0000FF",message:"Succes Build ${projectName}"
+                  }catch(ex){
+                   slackSend channel: "${slackChannel}",color: "#0000FF",message:"Step Failed :face_with_symbols_on_mouth: ${ex.message}"
+                  }
+               }
             }            
         }
     
         stage('Test'){
             steps{
-              
                  sh "mvn test"
                  slackSend channel: "${slackChannel}",color: "#008080",message:"Successfully Test ${projectName}"
                  echo "Project test run ${successMessage}"
+                  
+                  
             }
         }
       
@@ -38,9 +45,7 @@ pipeline {
             steps{
                   sh "mvn package"
                   echo "Project deployed ${successMessage}"
-                  slackSend channel: "${slackChannel}",color: "##00FFFF'",message:"Successfully Test ${projectName}"
-               
-              
+                  slackSend channel: "${slackChannel}",color: "##00FFFF'",message:"Successfully Test ${projectName}"  
        }           
      }
   }
