@@ -22,7 +22,7 @@ pipeline {
                   echo "Branch Name:${env.BRANCH_NAME}"
                   try{
                    //slackSend channel: "${slackChannel}",color: "#0000FF",message:"Build started..."
-                   notifyStarted("BUILD);
+                   notifyStarted("BUILD");
                    sh "mvn clean"
                    notifySuccessful("BUILD");
                    //slackSend channel: "${slackChannel}",color: "#0000FF",message:"Build successfully complete..."
@@ -38,7 +38,7 @@ pipeline {
                script {
                   try{
                 // slackSend channel: "${slackChannel}",color: "#008080",message:"Test started..."
-                 notifyStarted("TEST);
+                 notifyStarted("TEST");
                  sh "mvn test"
                  notifySuccessful("TEST");
                //  slackSend channel: "${slackChannel}",color: "#008080",message:"Test successfully complete..."
@@ -54,7 +54,7 @@ pipeline {
             steps{
                script {
                  try{
-                     notifyStarted("DEPLOYMENT);
+                     notifyStarted("DEPLOYMENT");
                      //slackSend channel: "${slackChannel}",color: "##00FFFF'",message:"Deployment start..."  
                      sh "mvn package"
                     notifySuccessful("DEPLOYMENT");
