@@ -17,7 +17,7 @@ pipeline {
                 //sh "mvn clean -f my-app"
                    sh "mvn clean"
                    echo "Project build ${successMessage}"  
-                   slackSend channel: '#jenkins',color: 'good',message:"Succes build app name"
+                   slackSend channel: '#atlas-jenkins',color: 'good',message:"Succes build app name"
             }            
         }
         
