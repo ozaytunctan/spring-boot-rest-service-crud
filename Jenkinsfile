@@ -22,9 +22,7 @@ pipeline {
                    slackSend channel: "${slackChannel}",color: "#0000FF",message:"Succes Build ${projectName}"
             }            
         }
-      
-       try{
-          
+    
         stage('Test'){
             steps{
               
@@ -32,10 +30,8 @@ pipeline {
                  slackSend channel: "${slackChannel}",color: "#008080",message:"Successfully Test ${projectName}"
                  echo "Project test run ${successMessage}"
             }
-        }}
-       catch(ex){
-        slackSend channel: "${slackChannel}",color: "#008080",message:"Filed Test ${projectName}"
-       }
+        }
+      
           
         
         stage('Deployment'){
