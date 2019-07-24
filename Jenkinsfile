@@ -16,7 +16,8 @@ pipeline {
                 //sh "git clone https://github.com/ozaytunctan/spring-boot-rest-service-crud.git"
                 //sh "mvn clean -f my-app"
                    sh "mvn clean"
-                   echo "Project build ${successMessage}"          
+                   echo "Project build ${successMessage}"  
+                   slackSend channel: '#jenkins',color: 'good',message:"Succes build app name"
             }            
         }
         
@@ -31,6 +32,7 @@ pipeline {
             steps{
                   sh "mvn package"
                   echo "Project deployed ${successMessage}"
+               
               
        }           
      }
