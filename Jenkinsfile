@@ -15,38 +15,23 @@ pipeline {
                // sh "rm -rf my-app"
                 //sh "git clone https://github.com/ozaytunctan/spring-boot-rest-service-crud.git"
                 //sh "mvn clean -f my-app"
-               try{
                    sh "mvn clean"
-                   echo "Project build ${successMessage}"
-               }
-               catch(ex){
-                  echo "${errorMessage}"
-               }
-                           
+                   echo "Project build ${successMessage}"          
             }            
         }
         
         stage('TEST'){
             steps{
-               try{
-                   sh "mvn test"
+                 sh "mvn test"
                  echo "Project test run ${successMessage}"
-               }
-               catch(ex){
-                  echo "${errorMessage}"
-               }
             }
         }
         
         stage('DEPLOY'){
             steps{
-               try{
                   sh "mvn package"
                   echo "Project deployed ${successMessage}"
-               }
-               catch(ex){
-                  echo "${errorMessage}"
-               }
+              
        }           
      }
   }
