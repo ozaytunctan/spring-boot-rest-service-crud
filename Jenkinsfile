@@ -70,15 +70,15 @@ pipeline {
 }
 
 def notifyStarted(stage) {
-   slackSend (color: '#FFFF00', message: "STARTED ${stage} :airplane : Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+   slackSend (color: '#FFFF00', message: "STARTED ${stage} :airplane: : Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
 }
 
 def notifySuccessful(stage) {
-    slackSend (color: '#00FF00', message: "SUCCESSFUL ${stage} :airplane : Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+    slackSend (color: '#00FF00', message: "SUCCESSFUL ${stage} :airplane: : Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
     currentBuild.result = "SUCCESSFULL"
 }
 
 def notifyFailed() {
-  slackSend (color: '#FF0000', message: "FAILED :face_with_symbols_on_mouth: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+  slackSend (color: '#FF0000', message: "FAILED :face_with_symbols_on_mouth: : Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
   currentBuild.result = "FAILED"
 }
