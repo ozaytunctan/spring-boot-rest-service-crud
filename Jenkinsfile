@@ -12,7 +12,7 @@ pipeline {
     }
     stages{
        
-        stage('BUILD'){
+        stage('Build'){
             steps{
                // sh "rm -rf my-app"
                 //sh "git clone https://github.com/ozaytunctan/spring-boot-rest-service-crud.git"
@@ -20,7 +20,8 @@ pipeline {
                
                script {
                   try{
-                   slackSend channel: "${slackChannel}",color: "#0000FF",message:"Build started..."
+                   //slackSend channel: "${slackChannel}",color: "#0000FF",message:"Build started..."
+                   notifyStarted();
                    sh "mvn clean"
                    slackSend channel: "${slackChannel}",color: "#0000FF",message:"Build successfully complete..."
                   }catch(ex){
@@ -58,4 +59,18 @@ pipeline {
        }           
      }
   }
+}
+
+def notifyStarted() {
+    slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+}
+
+def notifySuccessful() {
+    slackSend (color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+    currentBuild.result = "SUCCESSFULL"
+}
+
+def notifyFailed() {
+  slackSend (color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+  currentBuild.result = "FAILED"
 }
