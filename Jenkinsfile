@@ -1,6 +1,8 @@
 def successMessage="Successfuly "
 def slackMessage="Slack "
 def errorMessage="Error"
+def slackChannel="#atlas-jenkins"
+def projectName="Atlas Backend Application"
 
 pipeline {
    agent any
@@ -17,7 +19,7 @@ pipeline {
                 //sh "mvn clean -f my-app"
                    sh "mvn clean"
                    echo "Project build ${successMessage}"  
-                   slackSend channel: '#atlas-jenkins',color: 'good',message:"Succes build app name"
+                   slackSend channel: "${slackChannel}",color: 'good',message:"Succes Build ${projectName}"
             }            
         }
         
