@@ -19,21 +19,30 @@ pipeline {
                 //sh "mvn clean -f my-app"
                    sh "mvn clean"
                    echo "Project build ${successMessage}"  
-                   slackSend channel: "${slackChannel}",color: 'good',message:"Succes Build ${projectName}"
+                   slackSend channel: "${slackChannel}",color: "#0000FF",message:"Succes Build ${projectName}"
             }            
         }
-        
-        stage('TEST'){
+      
+       try{
+          
+        stage('Test'){
             steps{
+              
                  sh "mvn test"
+                 slackSend channel: "${slackChannel}",color: "#008080",message:"Successfully Test ${projectName}"
                  echo "Project test run ${successMessage}"
             }
-        }
+        }}
+       catch(ex){
+        slackSend channel: "${slackChannel}",color: "#008080",message:"Filed Test ${projectName}"
+       }
+          
         
-        stage('DEPLOY'){
+        stage('Deployment'){
             steps{
                   sh "mvn package"
                   echo "Project deployed ${successMessage}"
+                  slackSend channel: "${slackChannel}",color: "##00FFFF'",message:"Successfully Test ${projectName}"
                
               
        }           
