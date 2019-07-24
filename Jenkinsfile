@@ -57,8 +57,7 @@ def slackMessage="Slack "
 pipeline {
     agent any
     tools {
-        maven 'apache-maven-3.6.1'
-        jdk 'jdk8'
+        maven 'M2'
     }
     stages {
         stage('Build') {
