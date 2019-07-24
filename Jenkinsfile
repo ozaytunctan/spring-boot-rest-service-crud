@@ -1,13 +1,13 @@
 def successMessage="Successfuly "
 def slackMessage="Slack "
 
-pipeline {
+/*pipeline {
     
     agent any
     
-   /*-  tools {
+   -  tools {
         maven 'apache-maven-3.6.1' 
-    }*/
+    }
     
     stages{
         
@@ -50,4 +50,24 @@ pipeline {
             
         }
         }
+}*/
+
+
+
+pipeline {
+    agent any
+    tools {
+        maven 'apache-maven-3.6.1'
+        jdk 'jdk8'
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'printenv'
+                withMaven(mavenSettingsConfig: 'maven-settings-global') {
+                    sh 'mvn clean package'
+                }
+            }
+        }     
+    }    
 }
