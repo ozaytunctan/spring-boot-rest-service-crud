@@ -19,6 +19,7 @@ pipeline {
                 //sh "mvn clean -f my-app"
                
                script {
+                  echo "Branch Name:${env.BRANCH_NAME}"
                   try{
                    //slackSend channel: "${slackChannel}",color: "#0000FF",message:"Build started..."
                    notifyStarted();
